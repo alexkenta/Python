@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Travel Plan</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <h1>Add a travel plan</h1>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-1">
+            <p>Logged in as {{user.username}}</p>
+        </div>
+        <div class="col-md-1">
+            <p><a href="/travels">Home</a></p>
+        </div>
+        <div class="col-md-1">
+            <p><a href="/logout">Logout</a></p>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <form action="/travels/process_trip" method="post">
+                {% csrf_token %}
+                <label for="destination">Destination: </label><br>
+                <input type="text" name="destination"><br>
+                <label for="plan">Plan: </label><br>
+                <input type="text" name="plan"><br>
+                <label for="start_date">Travel start date:</label><br>
+                <input type="date" name="start_date"><br>
+                <label for="end_date">Travel end date:</label><br>
+                <input type="date" name="end_date"><br>
+                <input type="submit" value="Add">
+            </form>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li class="text-danger">{{message}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>   
+</div>    
+</body>
+</html>
